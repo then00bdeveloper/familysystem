@@ -5,18 +5,18 @@ include 'db.php';
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $name=$_POST['name'];
-    $date=$_POST['date'];
     $urgent=isset($_POST['urgent']) ? 1:0;
+    $posted=date("Y-m-d H:i:s");
 
-    $sql="INSERT INTO events (name, date, urgent) VALUES ('$name', '$date', '$urgent')" ;
+    $sql="INSERT INTO announcements (name, urgent, posted) VALUES ('$name', '$urgent', '$posted')" ;
 
     if($conn->query($sql)===TRUE){
-        $_SESSION['success'] = 'New event created successfully';
+        $_SESSION['success'] = 'New announcement posted successfully';
     }else{
-        $_SESSION['fail'] = 'Failed to create event. Try again or contact admin';
+        $_SESSION['fail'] = 'Failed to post the announcement. Try again or contact admin';
     }
     $conn->close();
-    header("Location: event.php");
+    header("Location: announcement.php");
     exit();
 }
 ?>
@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create new event</title>
+    <title>Create a new announcement</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .success-message {
@@ -53,7 +53,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
     <div class="bg-white p-8 rounded shadow-md w-full max-w-md mx-auto">
-        <h2 class="text-2xl font-bold mb-6 text-center">Create a new event</h2>
+        <h2 class="text-2xl font-bold mb-6 text-center">Create a new announcement</h2>
         <?php
           if(isset($_SESSION['success'])){
             echo '<p class="success-message">' . $_SESSION['success'] . '</p>';
@@ -65,17 +65,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
           }
         ?>
         <div style="margin-left:20px;" class="form-container">
-            <form class="form" action="createevent.php" method="post">
+            <form class="form" action="createann.php" method="post">
                 <div class="form-group mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Event name:</label>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Title:</label>
                     <input type="text" id="name" name="name" required value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" class="w-full px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </div>
-
-                <div class="form-group mb-4">
-                    <label for="date" class="block text-sm font-medium text-gray-700">Date:</label>
-                    <input type="date" id="date" name="date" required value="<?php echo isset($_POST['date']) ? htmlspecialchars($_POST['date']) : ''; ?>" class="w-full px-2 py-1 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                </div>
-
                 <div class="form-group mb-4">
                     <label for="urgent" class="block text-sm font-medium text-gray-700">Mark as urgent</label>
                     <input type="checkbox" id="urgent" name="urgent" class="mr-2" <?php echo isset($_POST['urgent']) && $_POST['urgent'] ? 'checked' : ''; ?> /> Yes

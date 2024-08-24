@@ -37,15 +37,16 @@ header("Pragma: no-cache");
             <!-- Announcements -->
             <div class="bg-gray-200 p-4 rounded shadow">
                 <h3 class="text-xl font-semibold mb-4">Announcements</h3>
-                <button class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mb-2">Create Announcement</button>
-                <button class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Edit Announcement</button>
+                <a href="announcement.php" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mb-2 text-center block">Check Event</a>
+                <!--<a href="edit.php" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 text-center block">Edit Event</a>-->
             </div>
             <!-- Events -->
             <div class="bg-gray-200 p-4 rounded shadow">
                 <h3 class="text-xl font-semibold mb-4">Events</h3>
-                <button class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mb-2">Create Event</button>
-                <button class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Edit Event</button>
+                <a href="event.php" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 mb-2 text-center block">Check Event</a>
+                <!--<a href="edit.php" class="w-full bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 text-center block">Edit Event</a>-->
             </div>
+
             <!-- Timetable -->
             <div class="bg-gray-200 p-4 rounded shadow">
                 <h3 class="text-xl font-semibold mb-4">Timetable</h3>
